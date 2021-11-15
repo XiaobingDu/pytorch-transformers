@@ -1,7 +1,10 @@
 """Test transformer model."""
 
 import unittest
-from src.transformer.modeling_transformer import *
+from transformer.modeling_transformer import *
+import torch
+import numpy as np
+from torch import nn
 
 d_key = 4
 nheads = 2

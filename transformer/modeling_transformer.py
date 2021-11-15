@@ -49,7 +49,7 @@ class MultiHeadAttention(nn.Module):
     """
 
     def __init__(self, model_dim, nheads, p=0.1, mask=None):
-        super().__init__()
+        super(MultiHeadAttention, self).__init__()
 
         self.mask = mask
         self.nheads = nheads
@@ -131,7 +131,7 @@ class Embedding(nn.Module):
     """Implement input and output embedding with tied weights."""
 
     def __init__(self, vocab_size, model_dim):
-        super().__init__()
+        super(Embedding, self).__init__()
 
         self.vocab_size = vocab_size
         self.model_dim = model_dim
@@ -155,7 +155,7 @@ class PositionalEncoder(nn.Module):
     """
 
     def __init__(self, d_model, max_len=5000, p=0.1):
-        super().__init__()
+        super(PositionalEncoder, self).__init__()
 
         # Compute the positional encodings once in log space.
         pos_enc = torch.zeros(max_len, d_model)
@@ -179,7 +179,7 @@ class EncoderLayer(nn.Module):
     """Implement encoder sub-layers."""
 
     def __init__(self, model_dim, hidden_dim, nheads, p=0.1):
-        super().__init__()
+        super(EncoderLayer, self).__init__()
         self.mhatt = MultiHeadAttention(
             model_dim, nheads, p, mask='diag',
         )
@@ -203,7 +203,7 @@ class DecoderLayer(nn.Module):
     """Implement decoder sub-layers."""
 
     def __init__(self, model_dim, hidden_dim, nheads, p=0.1):
-        super().__init__()
+        super(DecoderLayer, self).__init__()
         self.mhatt_masked = MultiHeadAttention(
             model_dim, nheads, p, mask='triu',
         )
@@ -248,7 +248,7 @@ class Transformer(nn.Module):
             p=0.1,
             max_len=5000,
     ):
-        super().__init__()
+        super(Transformer, self).__init__()
         self.embedding = Embedding(vocab_size, model_dim)
         self.pos_enc = PositionalEncoder(model_dim, max_len, p)
 
