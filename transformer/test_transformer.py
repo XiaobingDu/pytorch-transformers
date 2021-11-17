@@ -1,7 +1,7 @@
 """Test transformer model."""
 
 import unittest
-from transformer.modeling_transformer import *
+from modeling_transformer import *
 import torch
 import numpy as np
 from torch import nn
