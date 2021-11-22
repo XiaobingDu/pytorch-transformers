@@ -12,8 +12,8 @@ model = Transformer(
         depth=6,
     )
 
-src_batch = # Tensor with shape (batch_size, src_sentence_length)
-tgt_batch = # Tensor with shape (batch_size, tgt_sentence_length)
+src_batch = []# Tensor with shape (batch_size, src_sentence_length)
+tgt_batch = []# Tensor with shape (batch_size, tgt_sentence_length)
 
 outputs = model(src_batch, tgt_batch)
 print('*****:', outputs)

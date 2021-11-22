@@ -170,8 +170,6 @@ class PositionalEncoder(nn.Module):
         self.dropout = nn.Dropout(p=p)
 
     def forward(self, x):
-        print('********:', x.shape)
-        print('***********:', self.pe[:, :x.size(1)].shape)
         x = x + Variable(self.pe[:, :x.size(1)],
                          requires_grad=False)
         return self.dropout(x)
@@ -195,8 +193,13 @@ class EncoderLayer(nn.Module):
         self.layer_norms = clones(nn.LayerNorm(model_dim), 2)
 
     def forward(self, src):
+        print('src......:', src)
         src_att = self.layer_norms[0](self.mhatt(src, src, src) + src)
+        print('mhatt.......:', self.mhatt(src, src, src))
+        print ('after norm src_att.......:', src_att)
         src_out = self.layer_norms[1](self.ffn(src_att) + src_att)
+        print('ffn.......:', self.ffn(src_att))
+        print('after norm src_out........:', src_out)
 
         return src_out
 
